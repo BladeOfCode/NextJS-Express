@@ -24,14 +24,14 @@ class Server {
     this.next = next({ dev: process.env.NODE_ENV !== 'production' })
     this.middleware = new Middleware(this.express)
     this.router = new NextjsExpressRouter(this.express, this.next)
-    this.watcher = watcher;
+    //this.watcher = watcher;
   }
 
   async start() {
     await this.next.prepare()
     await this.middleware.init()
     await this.router.init()
-    this.watcher.init();
+    // this.watcher.init();
     this.server = httpServer(this.express)
     this.server.listen(process.env.EXPRESS_PORT)
   }
